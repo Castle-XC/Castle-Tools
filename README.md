@@ -8,15 +8,15 @@ Full instructions on how to use the included Gulp setup can be found insdie of t
 
 
 ####Node Modules included:
-del
-gulp
-gulp-concat
-gulp-jshint
-gulp-notify
-gulp-rename
-gulp-sass
-gulp-sourcemaps
-gulp-uglify
-jshint
-node-bourbon
-node-neat
+* del
+* gulp
+* gulp-concat
+* gulp-jshint
+* gulp-notify
+* gulp-rename
+* gulp-sass
+* gulp-sourcemaps
+* gulp-uglify
+* jshint
+* node-bourbon
+* node-neat
