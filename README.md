@@ -6,8 +6,9 @@ This repo is intended to be used as a quick template to get a new Front-End proj
 
 Full instructions on how to use the included Gulp setup can be found insdie of the **/FE-Tools/** folder, in *README.md*.
 
+---
 
-####Node Modules included:
+#####Node modules included as part of this template:
 * del
 * gulp
 * gulp-concat
