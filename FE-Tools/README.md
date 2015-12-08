@@ -9,7 +9,7 @@ You will need to install the following items in order to build the SCSS into CSS
 [GulpJS](http://gulpjs.com/)
 
 ####Local Install:
-Now that you have Node & Gulp, open a command window in this files folder (**/tools/**) and type:
+Now that you have Node & Gulp, open a command window in this files folder (**/FE-Tools/**) and type:
 ```
 npm install
 ```
@@ -18,37 +18,50 @@ The above only needs to be done once per project, to install the node modules ne
 ####Available Commands:
 The following commands are available in the command window while in the **/FE-Tools/** folder
 
-To delete the "-generated" files in the /Assets/ section, run:
+
 ```
 gulp clean
 ```
-This command will run automatically when you run the default 'gulp' command
+This command will delete the generated files in the /Assets/ folder.  It will run automatically when you run the default 'gulp' command, as well as the 'build' or 'build:prod' commands.
 
 
-To Compile the styles for development purposes, type:
 ```
 gulp styles
 ```
-This includes unminified .css and sourcemaps.
+This command will compile the uncompressed styling, complete with sourcemaps for the .scss, and place the new .css file(s) into the /styles/ folder inside of /Assets/.  This is the development styles compile command.
 
 
-To start watching for changes to the .scss files, and compile the .css automatically, type:
-```
-gulp watch
-````
-The watch automatically uses 'styles' as it's task of choice, rather than 'styles:prod'
-
-
-To do both (build for DEV and watch .scss files), simply type:
-```
-gulp
-```
-
-
-Alternatively, you can build for production (minified and compressed .css) with:
 ```
 gulp styles:prod
 ```
+This is the same as above, but intended for production builds.  The styling has no sourcemaps, and is minified.
 
 
-Styling is  bundled and output as one .css file, while JS is bundled and outputs both the minified and non-minfied versions of the scripting.  All files live in their appropriate folders inside of "/Assets/", and are flagged as 'generated'.
+```
+gulp scripts
+```
+This command will take all of the scripts in the /scripts/ folder, bundle them up and output both the newly bundled file as well as the minified version to the /scripts/ folder inside of /Assets/.
+
+
+```
+gulp watch
+````
+To start watching for changes to the .scss & .js files inside of /FE-Tools/, run this command.  Changes detecited will automatically run the appropriate development command to recompile/bundle.
+
+
+For grouped up easy to use commands, use the following:
+
+```
+gulp build
+```
+or simply
+```
+gulp
+```
+Either of the above will clean the /Assets/ directory by removing any previously generated files, then run the 'styles' and 'scripts' commands, while also starting the 'watch'.  This is the goto command for normal day to day development work.
+
+
+```
+gulp build:prod
+```
+This is the goto command to build production ready styles and scripting.  It will run 'styles:prod' as well as 'scripts'; the watch will not be started using this command.
