@@ -4,5 +4,5 @@
 #  Ignore for Assets #
 #                    #
 ######################
-# scripts/*.js
-# styles/*.css
+scripts/*.js
+styles/*.css
