@@ -1,0 +1,12 @@
+
+// Vendor
+@import 'bourbon'; // added via GULP, lives in node-modules
+@import 'neat'; // added via GULP, lives in node-modules
+
+// Modules : Code that doesn't output any CSS (mixins, variables, etc)
+@import 'modules/colors';
+
+// Partials : This is where files that will output CSS should be imported (components)
+@import 'partials/example-component';
+
+// 3rd Party: Include 3rd party CSS here, as needed, assuming that it's ready to go as-is.

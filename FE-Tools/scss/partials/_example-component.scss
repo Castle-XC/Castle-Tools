@@ -1,0 +1,21 @@
+
+// Example component file
+.example-component {
+  background-color: darken($white, 50%);
+  border: 1px solid $site-border-color;
+  color: $base-font-color;
+  margin: 50px auto;
+  max-width: 800px;
+  padding: 1%;
+  width: 100%;
+
+  a {
+    color: $base-link-color;
+    text-decoration: none;
+
+    &:hover {
+      color: lighten($base-link-color, 10%);
+      text-decoration: underline;
+    }
+  } // a
+} // .example-component

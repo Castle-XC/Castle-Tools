@@ -1,0 +1,14 @@
+
+// Example color variables file
+$black:     #000;
+$blue:      #00c;
+$green:     #0c0;
+$purple:    #507;
+$red:       #c00;
+$white:     #fff;
+
+$site-border-color:     lighten($black, 20%);
+$site-shadow-color:     lighten($black, 30%);
+
+$base-font-color: darken($white, 10%);
+$base-link-color: $purple;
