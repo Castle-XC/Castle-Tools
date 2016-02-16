@@ -42,9 +42,16 @@ This is the same as above, but intended for production builds.  The styling has 
 ---
 
 ```
-gulp scripts
+gulp scripts:custom
 ```
-This command will take all of the scripts in the /scripts/ folder, bundle them up and output both the newly bundled file as well as the minified version to the /scripts/ folder inside of **/Assets/**.
+This command will take all of the scripts in the /scripts/custom/ folder, bundle them up and output both the newly bundled file as well as the minified version to the /scripts/ folder inside of **/Assets/**.
+
+---
+
+```
+gulp scripts:vendor
+```
+This command will take all of the scripts in the /scripts/vendor/ folder, bundle them up and output both the newly bundled file as well as the minified version to the /scripts/ folder inside of **/Assets/**.
 
 ---
 

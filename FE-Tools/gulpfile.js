@@ -17,15 +17,16 @@ var sass = require('gulp-sass'),
 
 var paths = {
     root: '../',
-    //src:  '../FE-Tools/',
-    //dest: '../Assets/',
     src: {
         styles: '../FE-Tools/scss/',
-        scripts: '../FE-Tools/scripts/'
+        scripts: {
+            custom: '../FE-Tools/scripts/custom/',
+            vendor: '../FE-Tools/scripts/vendor/'
+        }
     },
     dest: {
-        styles: '../Assets/styles/',
-        scripts: '../Assets/scripts/'
+        styles: '../assets/styles/',
+        scripts: '../assets/scripts/'
     }
 };
 
@@ -78,10 +79,10 @@ gulp.task('styles:prod', function () {
         // .pipe(notify({ message: 'Task "styles:prod" has finished.' }));
 });
 
-gulp.task('scripts', function () {
+gulp.task('scripts:custom', function () {
     "use strict";
 
-    return gulp.src(paths.src.scripts + '**/*.js')
+    return gulp.src(paths.src.scripts.custom + '**/*.js')
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
         .pipe(concat('scripts-generated.js'))
@@ -91,7 +92,19 @@ gulp.task('scripts', function () {
         }))
         .pipe(uglify())
         .pipe(gulp.dest(paths.dest.scripts));
-        // .pipe(notify({ message: 'Task "scripts" has finished.'}));
+});
+
+gulp.task('scripts:vendor', function () {
+    "use strict";
+
+    return gulp.src(paths.src.scripts.vendor + '**/*.js')
+        .pipe(concat('scripts-vendor-generated.js'))
+        .pipe(gulp.dest(paths.dest.scripts))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(uglify())
+        .pipe(gulp.dest(paths.dest.scripts));
 });
 
 // Task: Watch files for changes
@@ -100,18 +113,18 @@ gulp.task('watch', function () {
     // Watch for changes to .scss files
     gulp.watch(paths.src.styles + '**/*.scss', ['styles']);
     // Watch for changes to .js files
-    gulp.watch(paths.src.scripts + '**/*.js', ['scripts']);
+    gulp.watch(paths.src.scripts.custom + '**/*.js', ['scripts:custom']);
 });
 
 //Build task: Clean out the /Assets/ folder,
 // compile styles, bundle scripting and then watch for changes
 gulp.task('build', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'watch');
+    gulp.start('styles', 'scripts:custom', 'scripts:vendor', 'watch');
 });
 
 //Build Task for PRoduction, no watch necessary
 gulp.task('build:prod', ['clean'], function() {
-    gulp.start('styles:prod', 'scripts');
+    gulp.start('styles:prod', 'scripts:custom', 'scripts:vendor');
 });
 
 // Default task is the same as build
