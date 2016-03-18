@@ -1,7 +1,7 @@
 
 // Example component file
 .example-component {
-  background-color: darken($white, 50%);
+  background-color: lighten($black, 40%);
   border: 1px solid $site-border-color;
   color: $base-font-color;
   margin: 50px auto;
@@ -11,11 +11,28 @@
 
   a {
     color: $base-link-color;
+    display: inline-block;
     text-decoration: none;
+    transition: color .5s .1s;
 
     &:hover {
-      color: lighten($base-link-color, 10%);
+      color: $white;
       text-decoration: underline;
     }
   } // a
+
+  p {
+    margin: 0 0 1em;
+
+    &:last-child {
+      margin: 0;
+    }
+  } // p
 } // .example-component
+
+.columns {
+
+  &--two {
+    column-count: 2;
+  }
+} // .columns
