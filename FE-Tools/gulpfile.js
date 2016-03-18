@@ -11,7 +11,8 @@ var sass = require('gulp-sass'),
     del = require('del'),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    autoprefixer = require('gulp-autoprefixer');
 
 //variables
 
@@ -53,6 +54,9 @@ gulp.task('styles', function () {
         .pipe(sass({
             includePaths: ['styles'].concat(neat)
         }).on('error', sass.logError))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions']
+        }))
         .pipe(sourcemaps.write())
         .pipe(rename({
             suffix: "-generated"
@@ -72,6 +76,9 @@ gulp.task('styles:prod', function () {
             includePaths: ['styles'].concat(neat),
             outputStyle: 'compressed'
         }).on('error', sass.logError))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions']
+        }))
         .pipe(rename({
             suffix: '-generated'
         }))
