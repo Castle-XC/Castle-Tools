@@ -1,38 +1,14 @@
 
 // Example component file
 .example-component {
-  background-color: lighten($black, 40%);
-  border: 1px solid $site-border-color;
-  color: $base-font-color;
-  margin: 50px auto;
-  max-width: 800px;
-  padding: 1%;
+  background-color: lighten($blue, 55%);
+  border: $base-border;
+  margin: 2em auto;
+  max-width: $max-width;
+  padding: 2%;
   width: 100%;
 
-  a {
-    color: $base-link-color;
-    display: inline-block;
-    text-decoration: none;
-    transition: color .5s .1s;
-
-    &:hover {
-      color: $white;
-      text-decoration: underline;
-    }
-  } // a
-
-  p {
-    margin: 0 0 1em;
-
-    &:last-child {
-      margin: 0;
-    }
-  } // p
-} // .example-component
-
-.columns {
-
-  &--two {
-    column-count: 2;
+  *:last-child {
+    margin-bottom: 0;
   }
-} // .columns
+} // .example-component
