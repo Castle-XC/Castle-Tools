@@ -1,12 +1,26 @@
 
 // Vendor
 @import 'bourbon'; // added via GULP, lives in node-modules
+@import 'modules/grid-settings'; // grid settings for Neat, must be imported BEFORE Neat.
 @import 'neat'; // added via GULP, lives in node-modules
 
-// Modules : Code that doesn't output any CSS (mixins, variables, etc)
-@import 'modules/colors';
+// Normalize:
+/*** Begin: Normalize ***/
+@import 'vendor/normalize';
 
+// Bitters: folder where Bitters Base file set is located
+/*** Begin: Bitters ***/
+@import 'base/base';
+
+/*** Begin: Partials ***/
 // Partials : This is where files that will output CSS should be imported (components)
 @import 'partials/example-component';
+@import 'partials/type-system-geometric';
+@import 'partials/type-system-rounded';
+@import 'partials/type-system-sans';
+@import 'partials/type-system-serif';
+@import 'partials/type-system-slab';
+@import 'partials/type-system-traditional';
 
+/*** Begin: Vendor ***/
 // 3rd Party: Include 3rd party CSS here, as needed, assuming that it's ready to go as-is.

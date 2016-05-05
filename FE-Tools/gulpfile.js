@@ -5,7 +5,8 @@ var gulp = require('gulp');
 // include plugins
 var sass = require('gulp-sass'),
     rename = require('gulp-rename'),
-    neat = require('node-neat').includePaths,
+    bourbon = require('bourbon').includePaths,
+    neat = require('bourbon-neat').includePaths,
     sourcemaps = require('gulp-sourcemaps'),
     notify = require('gulp-notify'),
     del = require('del'),
@@ -52,7 +53,7 @@ gulp.task('styles', function () {
     gulp.src(paths.src.styles + '**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({
-            includePaths: ['styles'].concat(neat)
+            includePaths: ['styles'].concat(bourbon, neat)
         }).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
@@ -73,7 +74,7 @@ gulp.task('styles:prod', function () {
     gulp.src(paths.src.styles + '**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({
-            includePaths: ['styles'].concat(neat),
+            includePaths: ['styles'].concat(bourbon, neat),
             outputStyle: 'compressed'
         }).on('error', sass.logError))
         .pipe(autoprefixer({
