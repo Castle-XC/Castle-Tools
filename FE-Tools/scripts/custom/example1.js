@@ -12,6 +12,12 @@
     // Here is a PUBLIC variable, accessable outside of this file
     example.publicExample = true;
 
+    // Here is a PRIVATE method
+    function privateMethod() {
+        console.log("privateMethod has been called.");
+        console.log("privateExample :" + privateExample);
+    } // end functoin privateMethod()
+    
     // Here is a PUBLICLY available method
     example.publicMethod = function () {
         console.log("example.publicMethod has been run!");
@@ -21,10 +27,4 @@
     };
 
     example.publicMethod();
-
-    // Here is a PRIVATE method
-    function privateMethod() {
-        console.log("privateMethod has been called.");
-        console.log("privateExample :" + privateExample);
-    } // end functoin privateMethod()
 })(window, jQuery, window.example = window.example || {});
