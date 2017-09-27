@@ -27,8 +27,8 @@ var paths = {
         }
     },
     dest: {
-        styles: '../assets/styles/',
-        scripts: '../assets/scripts/'
+        styles: '../generated/styles/',
+        scripts: '../generated/scripts/'
     }
 };
 
@@ -94,10 +94,16 @@ gulp.task('scripts:custom', function () {
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
         .pipe(concat('scripts-generated.js'))
-        .pipe(gulp.dest(paths.dest.scripts))
-        .pipe(rename({
-            suffix: '.min'
-        }))
+        .pipe(gulp.dest(paths.dest.scripts));
+});
+
+gulp.task('scripts:custom:prod', function() {
+    "use strict";
+    
+    return gulp.src(paths.src.scripts.custom + '**/*.js')
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('default'))
+        .pipe(concat('scripts-generated.js'))
         .pipe(uglify())
         .pipe(gulp.dest(paths.dest.scripts));
 });
@@ -107,10 +113,14 @@ gulp.task('scripts:vendor', function () {
 
     return gulp.src(paths.src.scripts.vendor + '**/*.js')
         .pipe(concat('scripts-vendor-generated.js'))
-        .pipe(gulp.dest(paths.dest.scripts))
-        .pipe(rename({
-            suffix: '.min'
-        }))
+        .pipe(gulp.dest(paths.dest.scripts));
+});
+
+gulp.task('scripts:vendor:prod', function () {
+    "use strict";
+
+    return gulp.src(paths.src.scripts.vendor + '**/*.js')
+        .pipe(concat('scripts-vendor-generated.js'))
         .pipe(uglify())
         .pipe(gulp.dest(paths.dest.scripts));
 });
@@ -124,15 +134,17 @@ gulp.task('watch', function () {
     gulp.watch(paths.src.scripts.custom + '**/*.js', ['scripts:custom']);
 });
 
-//Build task: Clean out the /Assets/ folder,
-// compile styles, bundle scripting and then watch for changes
+// Build task: Clean out the /Assets/ folder,
+// (clean generated folders, compile css with source maps,
+// bundle scripting, watch for changes to scss & js, nothing is minified)
 gulp.task('build', ['clean'], function() {
     gulp.start('styles', 'scripts:custom', 'scripts:vendor', 'watch');
 });
 
-//Build Task for PRoduction, no watch necessary
+//Build Task for Production
+//(no watch, no source maps, everything minified)
 gulp.task('build:prod', ['clean'], function() {
-    gulp.start('styles:prod', 'scripts:custom', 'scripts:vendor');
+    gulp.start('styles:prod', 'scripts:custom:prod', 'scripts:vendor:prod');
 });
 
 // Default task is the same as build
